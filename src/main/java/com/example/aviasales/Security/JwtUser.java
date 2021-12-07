@@ -1,36 +1,27 @@
 package com.example.aviasales.Security;
 
+import com.example.aviasales.Domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 
 public class JwtUser implements UserDetails {
-    private Integer id;
     private String login;
     private String password;
-    private final Date lastPasswordResetDate;
-    private final Collection<? extends GrantedAuthority> authorities;
+    private Collection<? extends GrantedAuthority> authorities;
 
-    public JwtUser(
-            Integer id,
-            String login,
-            String password,
-            Collection<? extends GrantedAuthority> authorities,
-            Date lastPasswordResetDate
-    ) {
-        this.id = id;
-        this.password = password;
-        this.authorities = authorities;
-        this.login = login;
-        this.lastPasswordResetDate = lastPasswordResetDate;
-    }
+    public static JwtUser fromAccountToJwtAccount(User account) {
+        JwtUser jwtUser = new JwtUser();
+        jwtUser.login = account.getLogin();
+        jwtUser.password = account.getPassword();
+        jwtUser.authorities = Collections.singletonList(new SimpleGrantedAuthority(account.getRole().getName()));
 
-    @JsonIgnore
-    public Integer getId() {
-        return id;
+        return jwtUser;
     }
 
     @JsonIgnore
@@ -72,10 +63,5 @@ public class JwtUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    @JsonIgnore
-    public Date getLastPasswordResetDate() {
-        return lastPasswordResetDate;
     }
 }

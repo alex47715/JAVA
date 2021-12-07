@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+AMIN PAGE
+</body>
+<script>
+  const checkIsAdmin = async () => {
+    const accountId = window.localStorage.getItem("accountId");
+    const token = window.localStorage.getItem("JWT");
+
+    const isAdmin = await response.json();
+
+    if (!isAdmin || response.status === 403) {
+      alert("403 Unauthorized!");
+      window.location.assign('/');
+    } else {
+      document.querySelector(".admin").classList.remove("d-none");
+    }
+  }
+
+  checkIsAdmin();
+
+</script>
+</html>

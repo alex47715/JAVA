@@ -29,24 +29,13 @@ public class User extends BaseModel {
             inverseJoinColumns = @JoinColumn(name = "flight_id",referencedColumnName = "id"))
     private List<Order> orders;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles",
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
-    private List<Role> roles;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
+    private Role role;
 
-    public User(String login, String password, String email) {
+    public User(String login, String password) {
         this.login = login;
         this.password = password;
-        this.email = email;
-    }
-
-    public User(String login, String password, String email, Set<Order> orders, List<Role> roles) {
-        this.login = login;
-        this.password = password;
-        this.email = email;
-        orders = orders;
-        roles = roles;
     }
 
     public User() {

@@ -1,21 +1,29 @@
 package com.example.aviasales.Domain;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 
+@Data
 @Entity
+@NoArgsConstructor
 @Table(name = "orders")
+
 public class Order extends BaseModel {
-    @Column(name = "user")
-    private Integer user_id;
-    @Column(name = "flight_id")
-    private Integer flight_id;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "flight_id")
+    private Flight flight;
+    @Column(name = "count")
+    private Integer count;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public Order() {
-    }
-
-    public Order(Integer user_id, Integer flight_id) {
-        this.user_id = user_id;
-        this.flight_id = flight_id;
+    public Order(Flight flight, Integer count, User user) {
+        this.flight = flight;
+        this.count = count;
+        this.user = user;
     }
 }

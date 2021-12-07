@@ -31,6 +31,8 @@ public class Flight extends BaseModel {
 
     @Column(name = "date_to")
     private Date date_to;
+    @Column(name = "free")
+    private int free;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "orders",
@@ -42,21 +44,13 @@ public class Flight extends BaseModel {
     public Flight() {
     }
 
-    public Flight(String name, Float price, String from_place, String to_place, Date date_from) {
-        this.name = name;
-        this.price = price;
-        this.from_place = from_place;
-        this.to_place = to_place;
-        this.date_from = date_from;
-    }
-
-    public Flight(String name, Float price, String from_place, String to_place, Date date_from, Date date_to, List<Order> orders) {
+    public Flight(String name, Float price, String from_place, String to_place, Date date_from, Date date_to, int free) {
         this.name = name;
         this.price = price;
         this.from_place = from_place;
         this.to_place = to_place;
         this.date_from = date_from;
         this.date_to = date_to;
-        this.orders = orders;
+        this.free = free;
     }
 }
