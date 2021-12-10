@@ -1,6 +1,7 @@
 function signup() {
     const login = document.querySelector('#login').value;
     const password = document.querySelector('#password').value;
+    const email = document.querySelector('#email').value;
     const resultMessage = document.querySelector('#resultMessage');
 
     fetch("/api/v1/auth/signup", {
@@ -8,7 +9,8 @@ function signup() {
         headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
         body: JSON.stringify({
             login,
-            password
+            password,
+            email
         })
     }).then(async (response) => {
         if(response.status === 201) {

@@ -34,17 +34,22 @@ public class OrderController {
     public ResponseEntity addToCart(RequestEntity<OrderDTO> orderDTO) {
         User user = userService.findById(orderDTO.getBody().getAccountId());
         Flight flight = flightService.findById(orderDTO.getBody().getProductId());
-        Order order = new Order(flight,orderDTO.getBody().getCount(),user);
+        Order order = new Order(flight.getId(),orderDTO.getBody().getCount(),user.getId());
         orderService.createCartOrder(order);
         return new ResponseEntity<>(order, HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "cart", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "cart")
     public ResponseEntity<List<Order>> getCart(@RequestParam Map<String, String> mapParam) {
         Integer userId = Integer.parseInt(mapParam.get("accountId"));
         User user = userService.findById(userId);
         List<Order> cart = orderService.getAccountProducts(user);
         return new ResponseEntity<>(cart, HttpStatus.OK);
+    }
+    @GetMapping(value = "all")
+    public ResponseEntity<List<Order>> getAllOrders() {
+        List<Order> cart = orderService.getAll();
+        return new ResponseEntity(cart, HttpStatus.OK);
     }
 
     @PatchMapping(value = "updateCount")

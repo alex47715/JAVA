@@ -33,6 +33,12 @@ public class User extends BaseModel {
     @JoinColumn(name = "role_id")
     private Role role;
 
+    public User(String login, String password, String email) {
+        this.login = login;
+        this.password = password;
+        this.email = email;
+    }
+
     public User(String login, String password) {
         this.login = login;
         this.password = password;

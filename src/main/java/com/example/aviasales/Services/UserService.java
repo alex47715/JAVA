@@ -5,6 +5,8 @@ import com.example.aviasales.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
@@ -15,4 +17,5 @@ public class UserService {
     }
 
     public User findById(Integer id) { return userRepository.findUserById(id); }
+    public List<User> findAll(){ return  userRepository.findAll(); }
 }

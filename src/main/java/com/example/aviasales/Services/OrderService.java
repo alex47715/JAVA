@@ -18,11 +18,10 @@ public class OrderService {
         orderRepository.save(cartOrder);
         return cartOrder;
     }
-
+    public List<Order> getAll(){ return orderRepository.findAll(); }
     public List<Order> getAccountProducts(User user) {
-        return orderRepository.findOrdersByUser(user);
+        return orderRepository.findOrdersByUserId(user.getId());
     }
-
     public boolean changeCartProductCount(Integer cartOrderId, int quantity) {
         Order cartOrder = orderRepository.findOrderById(cartOrderId);
         cartOrder.setCount(quantity);

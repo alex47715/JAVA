@@ -17,8 +17,12 @@ public class AuthUserDTO {
     @Length(min = 8, max = 16, message = "Password length must be between 8 and 16 characters")
     private String password;
 
+    @NotBlank(message = "Email cannot be empty")
+    @Length(min = 8, max = 16, message = "Email length must be between 8 and 16 characters")
+    private String email;
+
     public User ToUser() {
-        return new User(this.getLogin(),this.getPassword());
+        return new User(this.getLogin(),this.getPassword(),this.getEmail());
     }
 
 }

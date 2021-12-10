@@ -34,13 +34,6 @@ public class Flight extends BaseModel {
     @Column(name = "free")
     private int free;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "orders",
-            joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "flight_id",referencedColumnName = "id"))
-    private List<Order> orders;
-
-
     public Flight() {
     }
 

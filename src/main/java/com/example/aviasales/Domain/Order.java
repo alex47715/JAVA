@@ -12,18 +12,16 @@ import javax.persistence.*;
 @Table(name = "orders")
 
 public class Order extends BaseModel {
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "flight_id")
-    private Flight flight;
+    @Column(name = "flight_id")
+    private Integer flightId;
     @Column(name = "count")
     private Integer count;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(name = "user_id")
+    private Integer userId;
 
-    public Order(Flight flight, Integer count, User user) {
-        this.flight = flight;
+    public Order(Integer flight, Integer count, Integer user) {
+        this.flightId = flight;
         this.count = count;
-        this.user = user;
+        this.userId = user;
     }
 }
