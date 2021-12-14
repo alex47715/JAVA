@@ -64,7 +64,7 @@ function loadFlights() {
 function loadUsers() {
     const token = window.localStorage.getItem("JWT");
     const result2 = document.querySelector("#resutuser");
-    fetch('/api/v1/admin/users', {
+    fetch('/api/v1/user/all', {
         headers:{"Authorization":`Bearer ${token}`}}
     )
         .then(response => response.json())

@@ -10,12 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
 
 @Slf4j
-@Controller
+@RestController
 @RequestMapping(value = "/api/v1/user")
 public class UserController {
     @Autowired
@@ -25,7 +26,7 @@ public class UserController {
     public ResponseEntity<User> getAccountInfo(@RequestParam Map<String, String> mapParam) {
         Integer accountId = Integer.parseInt(mapParam.get("accountId"));
         User user = userService.findById(accountId);
-        user.setPassword(null);
+        //user.setPassword(null);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
     @GetMapping(value = "all")

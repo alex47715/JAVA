@@ -13,10 +13,10 @@ public class MailConfig {
     @Bean
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp.yandex.ru");
-        mailSender.setPort(465);
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
 
-        mailSender.setUsername("alex47715@yandex.ru");
+        mailSender.setUsername("apanasevich90@gmail.com");
         mailSender.setPassword("riki228Q%");
 
         Properties props = mailSender.getJavaMailProperties();

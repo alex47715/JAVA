@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Component
 @Slf4j
 public class LogAspect {
-    @Pointcut("execution(public * com.example.aviasales.Controllers.FlightController.*(..))")
+    @Pointcut("@annotation(LogAnnotation)")
     public void callAtAppController(){
     }
     @Before("callAtAppController()")
