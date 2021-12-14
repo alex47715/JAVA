@@ -39,8 +39,18 @@
         signOut.classList.add('btn-primary')
         signOut.style.margin="10px"
         signOut.innerHTML = "Sign Out";
+        const profile = document.createElement("button");
+        profile.onclick = () => {
+          window.location.assign("/profile");
+        };
+        profile.classList.add('no-link');
+        profile.classList.add('btn');
+        profile.classList.add('btn-primary')
+        profile.style.margin="10px"
+        profile.innerHTML = "Profile";
 
         authLinks.appendChild(signOut);
+        authLinks.appendChild(profile)
       } else {
         const signIn = document.createElement("a");
         signIn.href = "/signin";

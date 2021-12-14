@@ -11,8 +11,54 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
 <!--    <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}"/>-->
+    <style>
+        #img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.3);
+            transform: scale(-1, 1);
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .admin {
+            margin: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+            justify-content: center;
+            align-items: start;
+            font-family: Consolas;
+        }
+
+        .admin > div {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 300px;
+            color: lawngreen;
+        }
+
+        .admin > div textarea {
+            height: 300px;
+            background: rgba(255,255,255,0.4);
+            color: lawngreen;
+            font-family: Consolas;
+        }
+    </style>
 </head>
 <body>
+<img src="https://cs-fun-pro.ucoz.com/_ph/2/3902211.jpg" id="img"/>
 <div class="admin d-none">
 
     <div>
@@ -20,17 +66,17 @@
         <button onclick="loadOrders()">GetOrders</button>
 
         <input type="text" placeholder="User login" id="userLogin"/>
-        <textarea id="result" class="w-25"></textarea>
+        <textarea id="result" class=""></textarea>
     </div>
     <div class="py-4">
         <h2>Flights</h2>
         <button onclick="loadFlights()">GetFlights</button>
-        <textarea id="resutproducts" class="w-25"></textarea>
+        <textarea id="resutproducts" class=""></textarea>
     </div>
     <div class="py-4">
         <h2>Users</h2>
         <button onclick="loadUsers()">GetUsers</button>
-        <textarea id="resutuser" class="w-25"></textarea>
+        <textarea id="resutuser" class=""></textarea>
     </div>
     <div>
         <h2>Add Flight</h2>
@@ -42,7 +88,7 @@
         <input id="free_i" placeholder="free" type="number">
         <input id="price_i" placeholder="price" type="number">
         <input id="name_i" placeholder="name" type="text">
-        <textarea id="resultadd" class="w-25"></textarea>
+        <textarea id="resultadd" class=""></textarea>
     </div>
     <div id="orders">
     </div>
